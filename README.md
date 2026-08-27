@@ -25,7 +25,7 @@ python train_hubert.py --data_path /path/to/your/data --lang target_language --m
 ```
 
 ```
-python train_hubert.py --data_path /path/to/your/data --lang target_language --model_type hubert-large-ll60k ##you can also choose hubert-xlarge-ll60k
+python train_whisper.py --data_path /path/to/your/data --lang target_language --model_type whisper-medium ## you can also choose whisper-small whisper-tiny etc.
 ```
 
 ```
