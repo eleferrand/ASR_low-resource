@@ -35,5 +35,10 @@ python train_w2v-bert.py --data_path /path/to/your/data --lang target_language
 ```
 python train_MMS.py --data_path /path/to/your/data --lang target_language 
 ```
+## Evaluation
+It's been shown that an small ngram model drastically helps WER. You can train a simple ngram lm with the command below. by default the order is 5, 3 is good as well. The text from the training data is used. Modify the script directly to change the path
+```
+python make_lm.py
+```
 
 
