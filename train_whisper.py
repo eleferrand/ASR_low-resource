@@ -13,16 +13,11 @@ import os, re
 import numpy as np
 import argparse
 from tqdm import tqdm
+from cleaning import clean_sent
 
 print("grabbing models")
 
 metric = evaluate.load("wer")
-
-def clean_sent(sent):
-    sent = sent.lower()
-    sent = re.sub(r"[\.\-\[\],\n;:?]"," ", sent)
-    return sent
-
 
 def get_data(data_path, part, lang):
     data = []

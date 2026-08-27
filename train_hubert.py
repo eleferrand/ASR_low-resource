@@ -21,7 +21,7 @@ import soundfile as sf
 import argparse
 from tqdm import tqdm
 import csv
-
+from cleaning import clean_sent
 
 
 os.environ["WANDB_DISABLED"] = "true"

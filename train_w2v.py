@@ -23,6 +23,7 @@ import soundfile as sf
 import argparse
 from tqdm import tqdm
 from random import shuffle
+from cleaning import clean_sent
 
 
 os.environ["WANDB_DISABLED"] = "true"
@@ -33,12 +34,6 @@ def read_audio(fname):
 
     wav, sr = sf.read(fname)
     return wav, sr
-
-
-def clean_sent(sent):
-    sent = sent.lower()
-    sent = re.sub(r"[\.\-\[\],\n;:?]"," ", sent)
-    return sent
 
 
 @dataclass

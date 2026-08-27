@@ -30,6 +30,7 @@ from transformers import TrainingArguments
 from evaluate import load
 from safetensors.torch import save_file as safe_save_file
 from transformers.models.wav2vec2.modeling_wav2vec2 import WAV2VEC2_ADAPTER_SAFE_FILE
+from cleaning import clean_sent
 
 os.environ["WANDB_DISABLED"] = "true"
 os.environ["WANDB_MODE"] = "offline"
@@ -92,23 +93,6 @@ def extract_all_chars(batch):
   all_text = " ".join(batch["sentence"])
   vocab = list(set(all_text))
   return {"vocab": [vocab], "all_text": [all_text]}
-
-
-
-
-def clean_sent(sent):
-    sent = sent.lower()
-    repl_dict = {("à", "á", "â", "ǎ") : "a", ("ì","ǐ", "í", "î") : "i", ("ń", "ǹ","ň"): "n", ("ú","ǔ", "ù") : "u", 
-                 ("é","è", "ê", "ě"," ́e"): "e", ("m̀", "ḿ","m̌"): "m", ("r̀") : "r", ("ó", "ô"): "o"}
-    for tones in repl_dict:
-        for char in tones:
-            if char in sent:
-                sent = sent.replace(char, repl_dict[tones])
-    sent = re.sub(r"[\.\-\[\],\n;:?]"," ", sent)
-    sent = sent.replace("!", "ǃ")
-    sent = sent.replace('"', '')
-    return sent
-
 
 
 
